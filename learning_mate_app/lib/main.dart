@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_mate_app/home.dart';
 import 'package:learning_mate_app/static.dart';
 
 void main() {
@@ -33,22 +34,51 @@ class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('LEARNING MATE')),
-      body: Static.id.isEmpty
-          ? Center(
-              child: Column(
-                children: [
-                  Text('Learning Mate'),
-                  ElevatedButton(
-                      onPressed: () {}, child: const Text('로그인 하러 가기'))
-                ],
-              ),
-            )
-          : Center(
-              child: Column(
-                children: [Text('로그인 됨쓰')],
-              ),
-            ),
-    );
+        appBar: AppBar(
+          title: const Text('LEARNING MATE'),
+          backgroundColor: const Color.fromRGBO(255, 128, 0, 10),
+        ),
+        body: Static.id.isEmpty
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'Learning Mate',
+                      style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(height: 30),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          //ff7f00
+                          primary: const Color.fromRGBO(255, 128, 0, 10)),
+                      onPressed: () {},
+                      child: const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Text(
+                          '로그인 하러 가기',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 30),
+                    const Text(
+                      '러닝메이트가 처음이신가요?',
+                      style: TextStyle(color: Colors.black54),
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: const Text(
+                          '회원가입 하러 가기',
+                          style:
+                              TextStyle(color: Color.fromARGB(255, 0, 77, 3)),
+                        ))
+                  ],
+                ),
+              )
+            : const Center(
+                child: Home(),
+              ));
   }
 }
