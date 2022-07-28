@@ -1,0 +1,104 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+
+<!--jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
+
+
+</head>
+<body>
+<div class="mx-auto my-5">
+
+
+<img src="assets/logo.png"  width="150" height="150" alt="" >
+<h1 class="mx-auto my-5">회원가입 </h1>
+<form id="join_form" method="post">
+  
+  <div class="form-outline mb-3">
+    <select class="selec form-control">
+      <option value="1">AA101</option>
+      <option value="2">AB202</option>
+      <option value="3">AC303</option>
+      <option value="4">AD404</option>
+      <option value="5">AE505</option>
+    </select>
+    <label class="form-label p-2" for="form6Example5">사원번호</label>
+  </div>
+
+  <!-- Text input -->
+  <div class="form-outline mb-3">
+    <input type="text" id="form6Example3" class="form-control" />
+    <label class="form-label p-2" for="form6Example3">이름 </label>
+  </div>
+
+	<div class="form-outline mb-3">
+    <label class="visually-hidden" for="inlineFormInputGroupUsername">email</label>
+    <div class="input-group">
+      <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="email" />
+      <div class="input-group-text">@
+      </div>
+    <select class="select form-control">
+      <option value="1">daum.net</option>
+      <option value="2">hanmail.net</option>
+      <option value="3">gmail.com</option>
+      <option value="4">naver.com</option>
+      <option value="5">nate.com</option>
+    </select>
+    </div>
+    <label class="form-label p-2" for="form6Example3">이메일 </label>
+      <button class="btn btn-secondary text-white" type="button" id="btn-id">  
+      중복 확인 
+</button>
+  </div>
+
+  <!-- 비밀번호  input -->
+  <div class="form-outline mb-3">
+    <input type="text" id="form6Example4" class="form-control" />
+    <label class="form-label p-2" for="form6Example4">비밀번호</label>
+  </div>
+  
+  <!-- 비밀번호 확인  input -->
+  <div class="form-outline mb-3">
+    <input type="text" id="form6Example4" class="form-control" />
+    <label class="form-label p-2" for="form6Example4">비밀번호 확인 </label>
+  </div>
+
+  <!-- Message input -->
+<!--   <div class="form-outline mb-5">
+    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
+    <label class="form-label p-2" for="form6Example7">추가적인 사항입력  </label>
+  </div> -->
+
+  <!-- Checkbox -->
+  <div class="form-check d-flex justify-content-center mb-4 p-3">
+    <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
+    <label class="form-check-label" for="form6Example8">회원가입을 하시겠습니까 ? </label>
+  </div>
+  
+  <!-- Submit button -->
+  <div class="d-grid gap-2 col-8 mx-auto p-3">
+         
+  <button class="join_btn btn text-white" type="button" style="background-color: #FF7F00" > 회원가입 </button>
+</div>
+</form>
+</div>
+
+<!-- 버튼 누르면 회원가입 정보 제출   -->
+<script>
+$(document).ready(function(){
+	//회원가입 버튼(회원가입 기능 작동)
+	$(".join_button").click(function(){
+		$("#join_form").attr("action", "/signin");
+		$("#join_form").submit();
+	});
+});
+</script>
+
+</body>
+</html>
