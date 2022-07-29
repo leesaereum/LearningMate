@@ -6,8 +6,7 @@ package com.spring.LearningMate.controller;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,16 +39,17 @@ public class Admincontroller {
 		return (String)request.getAttribute("return");
 	}
 	
-	//sign in
-	@RequestMapping("/signinV")
-	public String signinV() {
-		return "signinV";
+	
+	//test 
+	@RequestMapping("/signin")
+	public String signin() {
+		return "signin";
 	}
 	//sign in - 구동 
-	@RequestMapping("/signin")
-	public String signin(HttpServletRequest request) {
+	@RequestMapping("/signinH")
+	public String signinH(HttpServletRequest request) {
 		signinCommand.execute1(sqlSession, request);
-		return "signin";
+		return "signinH";
 		
 	}
 }

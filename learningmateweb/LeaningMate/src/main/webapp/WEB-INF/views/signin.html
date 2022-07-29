@@ -1,104 +1,170 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="UTF-8">
-
 <!--jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="js/join_check.js?v=<%=new java.util.Date().getTime()%>"></script>
+	<meta charset="UTF-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+  <style>
+    body {
+      min-height: 100vh;
+      background: -webkit-gradient(linear, left bottom, right top, from(#e4ecf5), to(#1d466c));
+      background: -webkit-linear-gradient(bottom left,  #e4ecf5 0%, #1d466c 100%);
+      background: -moz-linear-gradient(bottom left,  #e4ecf5 0%, #1d466c 100%);
+      background: -o-linear-gradient(bottom left,  #e4ecf5 0%, #1d466c 100%);
+      background: linear-gradient(to top right, #e4ecf5 0%, #1d466c 100%);
+    }
+
+    .input-form {
+      max-width: 680px;
+      margin-top: 90px;
+      margin-bottom: 30px;
+      padding: 46px;
+      background: #fff;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 15px;
+      -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.20)
+    }
+  </style>
+  
 </head>
+
 <body>
-<div class="mx-auto my-5">
 
+  <div class="container">
+    <div class="input-form-backgroud row">
+      <div class="input-form col-md-12 mx-auto">
+        <h2 class="mb-3">회원가입</h2>
+        <form class="validation-form" novalidate>
+          <div class="row">
+          <!-- name -->
+            <div class="col-md-6 mb-3">
+              <label for="name">* 이름</label>
+              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <!--invalid  -->
+              <div class="invalid-feedback">
+                이름을 입력해주세요.
+              </div>
+              <!--valid  -->
+              <div class="valid-feedback">
+ 				이름이 확인되었습니다.
+               </div>
+            </div>
+            
+            <!-- 성별  -->
+            <div class="col-md-6 mb-3">
+              <label for="name">* 성별 </label><br>
+              <div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+			  <label class="form-check-label" for="inlineRadio1">남  </label>
+			</div>
+			<div class="form-check form-check-inline">
+			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required>
+			  <label class="form-check-label" for="inlineRadio2">여  </label>
+			</div>
+            </div>
+            <!--  사원번호  -->
+             <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="root">사원번호</label>
+       
+              <select class="custom-select d-block w-100" id="root" >
 
-<img src="assets/logo.png"  width="150" height="150" alt="" >
-<h1 class="mx-auto my-5">회원가입 </h1>
-<form id="join_form" method="post">
-  
-  <div class="form-outline mb-3">
-    <select class="selec form-control">
-      <option value="1">AA101</option>
-      <option value="2">AB202</option>
-      <option value="3">AC303</option>
-      <option value="4">AD404</option>
-      <option value="5">AE505</option>
-    </select>
-    <label class="form-label p-2" for="form6Example5">사원번호</label>
-  </div>
+               <option value="1">AA101</option>
+   					  <option value="2">AB202</option>
+				      <option value="3">AC303</option>
+				      <option value="4">AD404</option>
+				      <option value="5">AE505</option>
+              </select>
+              
+            </div>
+            
+          </div>
 
-  <!-- Text input -->
-  <div class="form-outline mb-3">
-    <input type="text" id="form6Example3" class="form-control" />
-    <label class="form-label p-2" for="form6Example3">이름 </label>
-  </div>
+          <div class="mb-3">
+            <label for="email">* 이메일</label>
+            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <div class="invalid-feedback">
+              이메일을 입력해주세요.
+            </div>
+             <!--valid  -->
+              <div class="valid-feedback">
+ 				이메일이 확인되었습니다.
+               </div>
+          </div>
+          
+          
+          <div class="mb-3">
+            <label for="password">* 비밀번호</label>
+            <input type="password" class="form-control" id="password" placeholder="" required>
+            <div class="invalid-feedback">
+             비밀번호를 입력해주세요.
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password">* 비밀번호 확인 </label>
+            <input type="password" class="form-control" id="password ck" placeholder="" required>
+            <div class="invalid-feedback">
+              비밀번호를 확인해주세요.
+            </div>
+          </div>
 
-	<div class="form-outline mb-3">
-    <label class="visually-hidden" for="inlineFormInputGroupUsername">email</label>
-    <div class="input-group">
-      <input type="text" class="form-control" id="inlineFormInputGroupUsername" placeholder="email" />
-      <div class="input-group-text">@
+          <div class="mb-3">
+            <label for="address">* 주소</label>
+            <input type="text" class="form-control" id="address" placeholder="서울특별시 강남구" required>
+            <div class="invalid-feedback">
+              주소를 확인해주세요.
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="address2">상세주소
+            </label>
+            <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
+          </div>
+
+            
+          </div>
+          <hr class="mb-4">
+          <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
+          </div>
+          <div class="mb-4"></div>
+          <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+        </form>
       </div>
-    <select class="select form-control">
-      <option value="1">daum.net</option>
-      <option value="2">hanmail.net</option>
-      <option value="3">gmail.com</option>
-      <option value="4">naver.com</option>
-      <option value="5">nate.com</option>
-    </select>
     </div>
-    <label class="form-label p-2" for="form6Example3">이메일 </label>
-      <button class="btn btn-secondary text-white" type="button" id="btn-id">  
-      중복 확인 
-</button>
+    <footer class="my-3 text-center text-small">
+      <p class="mb-1">&copy; 2022 LearningMate</p>
+    </footer>
   </div>
+  <script>
+    window.addEventListener('load', () => {
+      const forms = document.getElementsByClassName('validation-form');
 
-  <!-- 비밀번호  input -->
-  <div class="form-outline mb-3">
-    <input type="text" id="form6Example4" class="form-control" />
-    <label class="form-label p-2" for="form6Example4">비밀번호</label>
-  </div>
-  
-  <!-- 비밀번호 확인  input -->
-  <div class="form-outline mb-3">
-    <input type="text" id="form6Example4" class="form-control" />
-    <label class="form-label p-2" for="form6Example4">비밀번호 확인 </label>
-  </div>
+      Array.prototype.filter.call(forms, (form) => {
+        form.addEventListener('submit', function (event) {
+          if (form.checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
 
-  <!-- Message input -->
-<!--   <div class="form-outline mb-5">
-    <textarea class="form-control" id="form6Example7" rows="4"></textarea>
-    <label class="form-label p-2" for="form6Example7">추가적인 사항입력  </label>
-  </div> -->
-
-  <!-- Checkbox -->
-  <div class="form-check d-flex justify-content-center mb-4 p-3">
-    <input class="form-check-input me-2" type="checkbox" value="" id="form6Example8" checked />
-    <label class="form-check-label" for="form6Example8">회원가입을 하시겠습니까 ? </label>
-  </div>
-  
-  <!-- Submit button -->
-  <div class="d-grid gap-2 col-8 mx-auto p-3">
-         
-  <button class="join_btn btn text-white" type="button" style="background-color: #FF7F00" > 회원가입 </button>
-</div>
-</form>
-</div>
-
-<!-- 버튼 누르면 회원가입 정보 제출   -->
-<script>
-$(document).ready(function(){
-	//회원가입 버튼(회원가입 기능 작동)
-	$(".join_button").click(function(){
-		$("#join_form").attr("action", "/signin");
-		$("#join_form").submit();
-	});
-});
-</script>
-
+          form.classList.add('was-validated');
+        }, false);
+      });
+    }, false);
+  </script>
 </body>
 </html>
