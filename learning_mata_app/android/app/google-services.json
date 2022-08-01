@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "215167370497",
+    "project_id": "learningmate-fe6a1",
+    "storage_bucket": "learningmate-fe6a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215167370497:android:320e96fb90127685940700",
+        "android_client_info": {
+          "package_name": "com.example.learning_mata_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215167370497-hcchaqegm16tf4t35271lu7mbdrt3jc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJa1-jELek1-pOepFiDLZ4rCCHaO1TrYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215167370497-hcchaqegm16tf4t35271lu7mbdrt3jc1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "215167370497-h0sobsg3vvc5lju2ku5ukjl9qsqid5hf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.learningmateapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:215167370497:android:bc00672bdf614721940700",
+        "android_client_info": {
+          "package_name": "com.example.learningmateapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "215167370497-la8s68dhpmvbpjh0ro99ku4m55dch1c7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.learningmateapp",
+            "certificate_hash": "4cd31e8392f566fee7dec13e995f89f67a91d26b"
+          }
+        },
+        {
+          "client_id": "215167370497-hcchaqegm16tf4t35271lu7mbdrt3jc1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJa1-jELek1-pOepFiDLZ4rCCHaO1TrYQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "215167370497-hcchaqegm16tf4t35271lu7mbdrt3jc1.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "215167370497-h0sobsg3vvc5lju2ku5ukjl9qsqid5hf.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.learningmateapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
