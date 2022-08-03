@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/tj/Documents/Development/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/tj/Desktop/fp/LearningMate/learning_mate_app"
+export "FLUTTER_ROOT=/Users/reum/development/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/reum/Documents/GitHub/LearningMate/learning_mata_app"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
