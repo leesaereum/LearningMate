@@ -31,24 +31,27 @@ public class Admincontroller {
 		this.signinCommand = signIn;
 	}
 	//로그인화면 
+	@RequestMapping("/loginV")
+	public String loginV() {
+		System.out.println("login1");
+		return "loginV";
+	}
 	
 	//login - 구동 
-	@RequestMapping("/login")
+	@RequestMapping("/logIn")
 	public String login(HttpServletRequest request) {
+		System.out.println("login2");
 		loginCommand.execute1(sqlSession, request);
-		System.out.println("login");
-
 		return (String)request.getAttribute("return");
 	}
 	
-	
-	//test 
+	//회원가입 화면  
 	@RequestMapping("/signin")
 	public String signinV() {
 		System.out.println("signin1");
 		return "signinV";
 	}
-	//sign in - 구동 
+	//회원가입 - 구동 
 	@RequestMapping("/signinH")
 	public String signIn(HttpServletRequest request) {
 		signinCommand.execute1(sqlSession, request);

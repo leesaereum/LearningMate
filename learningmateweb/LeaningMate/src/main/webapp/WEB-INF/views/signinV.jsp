@@ -5,6 +5,7 @@
 
 <head>
   <%@include file="sidebar.html" %>	
+
 </head>
 
 <body>
