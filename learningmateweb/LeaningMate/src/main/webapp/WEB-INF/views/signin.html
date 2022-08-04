@@ -46,15 +46,29 @@
     <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h2 class="mb-3">회원가입</h2>
-        <form class="validation-form" novalidate>
+        <form class="validation-form" action="signinH" novalidate>
           <div class="row">
+            <!--  사원번호  -->
+             <div class="row">
+            <div class="col-md-8 mb-3">
+              <label for="root">* 사원번호</label>
+              <select class="custom-select d-block w-100" id="root" name="adCode">
+               		  <option value="AA101">AA101</option>
+   					  <option value="AB202">AB202</option>
+				      <option value="AC303">AC303</option>
+				      <option value="AD404">AD404</option>
+				      <option value="AE505">AE505</option>
+              </select>  
+            </div>   
+          </div>
           <!-- name -->
             <div class="col-md-6 mb-3">
               <label for="name">* 이름</label>
-              <input type="text" class="form-control" id="name" placeholder="" value="" required>
+              <input type="text" class="form-control" id="name" name="adName" placeholder="" value="" required maxLength=10>
+              <!-- 10글자 이하  -->
               <!--invalid  -->
               <div class="invalid-feedback">
-                이름을 입력해주세요.
+                2글자 이상 입력해주세요 
               </div>
               <!--valid  -->
               <div class="valid-feedback">
@@ -66,35 +80,18 @@
             <div class="col-md-6 mb-3">
               <label for="name">* 성별 </label><br>
               <div class="form-check form-check-inline">
-			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" required>
+			  <input class="form-check-input" type="radio" name="adGender" id="inlineRadio1" value="남" required>
 			  <label class="form-check-label" for="inlineRadio1">남  </label>
 			</div>
 			<div class="form-check form-check-inline">
-			  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" required>
+			  <input class="form-check-input" type="radio" name="adGender" id="inlineRadio2" value="여" required>
 			  <label class="form-check-label" for="inlineRadio2">여  </label>
 			</div>
             </div>
-            <!--  사원번호  -->
-             <div class="row">
-            <div class="col-md-8 mb-3">
-              <label for="root">사원번호</label>
-       
-              <select class="custom-select d-block w-100" id="root" >
-
-               <option value="1">AA101</option>
-   					  <option value="2">AB202</option>
-				      <option value="3">AC303</option>
-				      <option value="4">AD404</option>
-				      <option value="5">AE505</option>
-              </select>
-              
-            </div>
-            
-          </div>
-
+		<!-- 이메일  -->
           <div class="mb-3">
             <label for="email">* 이메일</label>
-            <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+            <input type="email" class="form-control" id="email" name="adEmail" placeholder="you@example.com" required >
             <div class="invalid-feedback">
               이메일을 입력해주세요.
             </div>
@@ -104,67 +101,79 @@
                </div>
           </div>
           
-          
+          <!-- 15글자 이내로  -->
           <div class="mb-3">
             <label for="password">* 비밀번호</label>
-            <input type="password" class="form-control" id="password" placeholder="" required>
+            <input type="password" class="form-control" id="password" name="adPw" placeholder="" required maxLength=15>
             <div class="invalid-feedback">
              비밀번호를 입력해주세요.
             </div>
+            <!--valid  -->
+              <div class="valid-feedback">
+ 				비밀번호가 확인되었습니다.
+               </div>
+            
           </div>
           <div class="mb-3">
             <label for="password">* 비밀번호 확인 </label>
-            <input type="password" class="form-control" id="password ck" placeholder="" required>
+            <input type="password" class="form-control" id="password_ck" placeholder="" required maxLength=15>
             <div class="invalid-feedback">
-              비밀번호를 확인해주세요.
+              비밀번호를 다시 입력해주세요 
             </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="address">* 주소</label>
-            <input type="text" class="form-control" id="address" placeholder="서울특별시 강남구" required>
-            <div class="invalid-feedback">
-              주소를 확인해주세요.
-            </div>
-          </div>
-
-          <div class="mb-3">
-            <label for="address2">상세주소
-            </label>
-            <input type="text" class="form-control" id="address2" placeholder="상세주소를 입력해주세요.">
-          </div>
-
+             <!-- 
+              <div class="valid-feedback">
+				비밀번호가 일치합니다.
+               </div>
+              -->
             
+          </div> 
           </div>
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <input type="checkbox" class="custom-control-input" id="aggrement" name="adAgree" value="1" required>
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
           <button class="btn btn-primary btn-lg btn-block" type="submit">가입 완료</button>
+ <!--          <a href="/LearningMate/admin/signin"></a> 
+			 <a href="/LearningMate/signin"></a> -->
         </form>
       </div>
     </div>
+    <!-- form 끝  -->
+    
     <footer class="my-3 text-center text-small">
       <p class="mb-1">&copy; 2022 LearningMate</p>
     </footer>
   </div>
+  
   <script>
+  	
+
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
 
       Array.prototype.filter.call(forms, (form) => {
+    	  var chPwd1 = document.getElementById("password");
+    	  var chPwd2 = document.getElementById("password_ck");
+    	  	
         form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
+        	
+        	
+          if (form.checkValidity() == false) {
             event.preventDefault();
-            event.stopPropagation();
-          }
+            event.stopPropagation();    
 
-          form.classList.add('was-validated');
+          }
+        form.classList.add('was-validated');
         }, false);
+        
+        
       });
     }, false);
+    
+    
+    
   </script>
 </body>
 </html>

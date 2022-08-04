@@ -10,8 +10,8 @@
  </select>
  <!-- signin -->
  <insert id="signIn">
-	INSERT INTO ADMIN (ADCODE,ADNAME,ADEMAIL,ADPW,AD_SIGNIN_DAY) 
-	VALUES (#{param1},#{param2},#{param3},#{param4},NOW());
+	INSERT INTO ADMIN (ADCODE,ADNAME,ADGENDER,ADEMAIL,ADPW,AD_SIGNIN_DAY,ADAGREE) 
+	VALUES (#{param1},#{param2},#{param3},#{param4},#{param5},NOW(),1);
  </insert>
  <!-- signout -->
  <update id="">

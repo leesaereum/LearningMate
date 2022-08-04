@@ -36,20 +36,24 @@ public class Admincontroller {
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) {
 		loginCommand.execute1(sqlSession, request);
+		System.out.println("login");
+
 		return (String)request.getAttribute("return");
 	}
 	
 	
 	//test 
 	@RequestMapping("/signin")
-	public String signin() {
-		return "signin";
+	public String signinV() {
+		System.out.println("signin1");
+		return "signinV";
 	}
 	//sign in - 구동 
 	@RequestMapping("/signinH")
-	public String signinH(HttpServletRequest request) {
+	public String signIn(HttpServletRequest request) {
 		signinCommand.execute1(sqlSession, request);
+		System.out.println("controller");
 		return "signinH";
-		
 	}
+	
 }

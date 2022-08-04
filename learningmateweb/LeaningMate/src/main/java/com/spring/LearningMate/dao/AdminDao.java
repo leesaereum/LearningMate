@@ -9,6 +9,6 @@ public interface AdminDao {
 	//이메일 adEmail
 	//비밀번호 adPw
 	public AdminDto logIn(String adEmail,String adPw);
-	public void signIn(String adCode,String adName, String adEmail, String adPw);
+	public void signIn(String adCode,String adName,String adGender, String adEmail, String adPw,String adAgree);
 }
                                                     

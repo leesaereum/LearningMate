@@ -13,12 +13,14 @@ public class SignInCommand implements ACommand {
 	public void execute1(SqlSession sqlSession, HttpServletRequest request) {
 		String adCode = request.getParameter("adCode");
 		String adName = request.getParameter("adName");
+		String adGender = request.getParameter("adGender");
 		String adEmail = request.getParameter("adEmail");
 		String adPw = request.getParameter("adPw");
-		
+		String adAgree = request.getParameter("adAgree");
 		
 		AdminDao dao = sqlSession.getMapper(AdminDao.class);
-		dao.signIn(adCode, adName, adEmail, adPw);
+		dao.signIn(adCode, adName, adGender, adEmail, adPw, adAgree);
+		System.out.println(adCode);
 	}
 
 	@Override
