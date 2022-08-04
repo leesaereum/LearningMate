@@ -9,7 +9,7 @@ okt = Okt()
 
 app = Flask(__name__)
 
-@app.route('/predictgenrebylstm', mothods=['POST'])
+@app.route('/predictgenrebylstm', methods=['POST'])
 def predict_genre_by_dl():
     # parameter로 넘어온 lyric을 받습니다.
     lyric = request.args.get('lyric')
@@ -45,7 +45,7 @@ def predict_genre_by_dl():
             # Get the index of the highest probability
             genre = genre_list[np.argmax(pred)]
 
-        return jsonify({'result': genre})
+        return genre
 
 
 if __name__ == '__main__':
