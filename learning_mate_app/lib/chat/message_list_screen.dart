@@ -20,9 +20,20 @@ class _MessageListScreenState extends State<MessageListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Image.asset("images/MainLogo2.png", width: 200),
-          backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
-          elevation: 0.8),
+        title: Image.asset("images/MainLogo2.png", width: 200),
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
+        elevation: 0.8,
+        actions: [
+          IconButton(
+              onPressed: () {
+                add_Image();
+              },
+              icon: const Icon(
+                Icons.add,
+                color: Colors.grey,
+              )),
+        ],
+      ),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: StreamBuilder<List<MessageModel>>(
@@ -116,55 +127,32 @@ class _MessageListScreenState extends State<MessageListScreen> {
                                               ),
                                             ],
                                           )
-                                        : Row(
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  BubbleSpecialThree(
-                                                    text:
-                                                        messages[index].manager,
-                                                    color: Color(0xFFE8E8EE),
-                                                    tail: true,
-                                                    isSender: false,
-                                                  ),
-                                                  Text(
-                                                      messages[index]
-                                                          .sendDate
-                                                          .toDate()
-                                                          .toLocal()
-                                                          .toString()
-                                                          .substring(5, 16),
-                                                      style: const TextStyle(
-                                                          color: Colors.grey,
-                                                          fontSize: 12))
-                                                ],
-                                              ),
-                                            ],
+                                        : BubbleSpecialThree(
+                                            text: messages[index].manager,
+                                            color: Color(0xFFE8E8EE),
+                                            tail: false,
+                                            isSender: false,
                                           )
                                 : Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Column(
                                         children: [
                                           BubbleSpecialThree(
-                                              text: messages[index].content,
-                                              color: const Color.fromRGBO(
-                                                  255, 128, 0, 10),
-                                              tail: true,
-                                              textStyle: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 16)),
-                                          Text(
-                                            messages[index]
-                                                .sendDate
-                                                .toDate()
-                                                .toLocal()
-                                                .toString()
-                                                .substring(5, 16),
-                                            style: const TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 12),
+                                            text: messages[index].manager,
+                                            color: Color(0xFFE8E8EE),
+                                            tail: true,
+                                            isSender: false,
                                           ),
+                                          Text(
+                                              messages[index]
+                                                  .sendDate
+                                                  .toDate()
+                                                  .toLocal()
+                                                  .toString()
+                                                  .substring(5, 16),
+                                              style: const TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 12))
                                         ],
                                       ),
                                     ],
@@ -197,7 +185,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
                 controller: controller,
                 decoration: InputDecoration(
                   labelStyle: const TextStyle(fontSize: 15),
-                  labelText: "내용을 입력하세요..",
+                  labelText: "내용을 입력하세요....",
                   fillColor: Colors.white,
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(25.0),
@@ -282,4 +270,6 @@ class _MessageListScreenState extends State<MessageListScreen> {
       return Stream.error(ex.toString());
     }
   }
+
+  void add_Image() {}
 }
