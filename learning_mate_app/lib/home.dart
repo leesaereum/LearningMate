@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_mate_app/chat/chat_bubble_test.dart';
+import 'package:learning_mate_app/calendar/calendar.dart';
 import 'package:learning_mate_app/chat/message_list_screen.dart';
 import 'package:learning_mate_app/login/mypage.dart';
 import 'package:learning_mate_app/main.dart';
@@ -88,6 +88,7 @@ class _HomeState extends State<Home> {
                   const SizedBox(height: 30),
                   ListTile(
                     onTap: () {
+                      Navigator.pop(context);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -101,7 +102,14 @@ class _HomeState extends State<Home> {
                     title: const Text('MY PAGE'),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const calendar(),
+                          ));
+                    },
                     leading: const Icon(
                       Icons.calendar_month,
                       color: Color.fromRGBO(0, 77, 3, 10),

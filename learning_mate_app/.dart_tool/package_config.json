@@ -152,6 +152,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_calendar_carousel",
+      "rootUri": "file:///Users/reum/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_calendar_carousel-2.4.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_lints",
       "rootUri": "file:///Users/reum/development/flutter/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1",
       "packageUri": "lib/",
@@ -416,7 +422,7 @@
       "languageVersion": "2.17"
     }
   ],
-  "generated": "2022-08-05T07:46:59.187312Z",
+  "generated": "2022-08-05T07:51:06.364911Z",
   "generator": "pub",
   "generatorVersion": "2.17.6"
 }
