@@ -13,7 +13,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
+        appBar: AppBar( 
           title: Image.asset("images/MainLogo2.png", width: 200),
           backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
           elevation: 0.0,

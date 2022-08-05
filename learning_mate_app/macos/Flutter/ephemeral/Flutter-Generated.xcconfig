@@ -1,6 +1,6 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/reum/development/flutter
-FLUTTER_APPLICATION_PATH=/Users/reum/Documents/GitHub/LearningMate/learning_mata_app
+FLUTTER_ROOT=/Users/tj/flutter
+FLUTTER_APPLICATION_PATH=/Volumes/Data/jiyeah/Github/LearningMate/learning_mate_app
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=1.0.0
