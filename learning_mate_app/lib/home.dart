@@ -1,6 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:learning_mate_app/chat/chat_bubble_test.dart';
+import 'package:learning_mate_app/chat/message_list_screen.dart';
+import 'package:learning_mate_app/login/mypage.dart';
 import 'package:learning_mate_app/main.dart';
 import 'package:learning_mate_app/static.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -10,6 +16,13 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String nickname = '';
+  @override
+  void initState() {
+    super.initState();
+    callNickname();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,12 +82,18 @@ class _HomeState extends State<Home> {
                 children: [
                   const SizedBox(height: 30),
                   Text(
-                    "${Static.nickname}님 환영합니다.",
+                    "${Static.nickname} 님 환영합니다.",
                     style: const TextStyle(fontSize: 20),
                   ),
                   const SizedBox(height: 30),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Mypage(),
+                          ));
+                    },
                     leading: const Icon(
                       Icons.favorite,
                       color: Color.fromRGBO(0, 77, 3, 10),
@@ -100,6 +119,8 @@ class _HomeState extends State<Home> {
                   ListTile(
                     onTap: () {
                       Static.id = '';
+                      Static.nickname = '';
+                      signOut();
                       Navigator.pop(context);
                       Navigator.pop(context);
                       Navigator.push(
@@ -119,12 +140,36 @@ class _HomeState extends State<Home> {
           ),
         ),
         floatingActionButton: GestureDetector(
-          onTap: () {},
+          onTap: () {
+            setState(() {
+              //viewon = !viewon;
+            });
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => MessageListScreen()));
+          },
           child: const CircleAvatar(
             backgroundColor: Color.fromRGBO(255, 128, 0, 10),
             radius: 30,
             child: Icon(Icons.question_answer, color: Colors.white),
           ),
         ));
+  }
+
+  Future<void> signOut() async {
+    await Firebase.initializeApp();
+
+    try {
+      await FirebaseAuth.instance.signOut();
+      final SharedPreferences pref = await SharedPreferences.getInstance();
+      pref.setString('id', '');
+      pref.setString('nickname', '');
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  callNickname() async {
+    final SharedPreferences pref = await SharedPreferences.getInstance();
+    nickname = pref.getString('nickname')!;
   }
 }

@@ -1,13 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_mate_app/Login.dart';
-import 'package:learning_mate_app/chat/message_list_screen.dart';
 import 'package:learning_mate_app/firebase_options.dart';
 import 'package:learning_mate_app/home.dart';
+import 'package:learning_mate_app/login/Login.dart';
 import 'package:learning_mate_app/static.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final SharedPreferences pref = await SharedPreferences.getInstance();
+  try {
+    Static.id = pref.getString('id')!;
+    Static.nickname = pref.getString('nickname')!;
+  } catch (e) {}
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -39,7 +44,6 @@ class Main extends StatefulWidget {
 class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: Static.id.isEmpty ? const LoginMain() : MessageListScreen());
+    return Scaffold(body: Static.id.isEmpty ? const LoginMain() : const Home());
   }
 }
