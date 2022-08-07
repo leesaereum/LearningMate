@@ -240,6 +240,7 @@ class _MypageState extends State<Mypage> {
     ));
   }
 
+  // 회원 탈퇴
   deleteAccount() async {
     try {
       await FirebaseAuth.instance.authStateChanges().listen((User? user) {

@@ -420,6 +420,7 @@ class _SigninState extends State<Signin> {
         ));
   }
 
+  // 회원가입 함수
   join() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -457,6 +458,7 @@ class _SigninState extends State<Signin> {
     }
   }
 
+  // 닉네임 생성 함수
   void createNickName() {
     try {
       JoinModel joinModel =

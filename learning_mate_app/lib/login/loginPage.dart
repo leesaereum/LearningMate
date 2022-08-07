@@ -299,8 +299,7 @@ class _LoginState extends State<Login> {
   }
 
   //functions
-  // 로그인 성공
-  // DB 연결
+  // 로그인
   _login() async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
@@ -341,6 +340,7 @@ class _LoginState extends State<Login> {
     }
   }
 
+  // 로그인 성공 시 닉네임 불러오기
   callNickname() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('id', idController.text);
@@ -360,6 +360,7 @@ class _LoginState extends State<Login> {
     });
   }
 
+  // 비밀번호 재설정 메일 전송
   Future sendmail() async {
     try {
       await FirebaseAuth.instance
@@ -387,5 +388,5 @@ class _LoginState extends State<Login> {
       print(e);
     }
   }
-} 
+}
 //END

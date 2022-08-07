@@ -23,7 +23,7 @@ class calendar extends StatefulWidget {
 class _calendarState extends State<calendar> {
   // 변수 선언
   List todaycount = []; // 오늘 접속한 기록(['count']0:접속안함,1:접속함)
-  List attendanceDates = []; // 출석한 날짜들(['date']
+  //List attendanceDates = []; // 출석한 날짜들(['date']
   int datecount = 0; // 출석한 날짜 수
   DateTime _currentDate = DateTime.now();
   String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
@@ -31,8 +31,8 @@ class _calendarState extends State<calendar> {
   DateTime _targetDateTime = DateTime.now();
 
   // 이벤트 아이콘 선언
-  static Widget _eventIcon = new Image.asset(
-    "images/logo.png", // 로고 이미지
+  static final Widget _eventIcon = Image.asset(
+    "./images/logo.png", // 로고 이미지
     color: Colors.white.withOpacity(0.8), // 투명도
     colorBlendMode: BlendMode.modulate,
   );
@@ -74,22 +74,22 @@ class _calendarState extends State<calendar> {
       markedDateIconBuilder: (event) {
         return event.icon;
       },
-      markedDateCustomTextStyle: TextStyle(
+      markedDateCustomTextStyle: const TextStyle(
         fontSize: 20,
         color: Colors.black,
       ),
       markedDateMoreShowTotal: true,
       // 선택한 날짜 색상
-      selectedDayTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+      selectedDayTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
       selectedDayButtonColor: Colors.lightGreen,
       selectedDayBorderColor: Colors.lightGreen,
       // 오늘 날짜 색상
-      todayTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+      todayTextStyle: const TextStyle(color: Colors.white, fontSize: 20),
       todayButtonColor: Colors.amber,
       todayBorderColor: Colors.amber,
       minSelectedDate: _currentDate.subtract(Duration(days: 360)),
       maxSelectedDate: _currentDate.add(Duration(days: 360)),
-      inactiveDaysTextStyle: TextStyle(
+      inactiveDaysTextStyle: const TextStyle(
         color: Colors.tealAccent,
         fontSize: 20,
       ),
@@ -102,7 +102,7 @@ class _calendarState extends State<calendar> {
       onDayLongPressed: (DateTime date) {
         print('long pressed date $date');
       },
-      daysTextStyle: TextStyle(fontSize: 20, color: Colors.black),
+      daysTextStyle: const TextStyle(fontSize: 20, color: Colors.black),
     );
 
     // 앱 화면
@@ -169,7 +169,7 @@ class _calendarState extends State<calendar> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 16.0),
+                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: _calendarCarouselNoHeader, // 달력 출력
                 ),
                 Text('이때까지의 출석일은 총 ${datecount.toString()}일 입니다'),
@@ -243,7 +243,7 @@ class _calendarState extends State<calendar> {
 
   // 오늘 출석 기록 추가하는 함수
   attendanceInsert() {
-    final data = {'check': true};
+    final data = {'date': today};
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       firestore.collection('check/${Static.id}/check').doc(today).set(data);
@@ -254,7 +254,55 @@ class _calendarState extends State<calendar> {
   }
 
   // 지금까지 출석한 날짜 가져오는 함수
-  attendanceLog() async {
+  attendanceLog() {
+    FirebaseFirestore.instance
+        .collection('check/${Static.id}/check')
+        .snapshots()
+        .listen((data) {
+      data.docs.forEach((element) {
+        datecount++;
+        _markedDateMap.add(
+            DateTime(
+                int.parse(element['date'].substring(0, 4)),
+                int.parse(element['date'].substring(5, 7)),
+                int.parse(element['date'].substring(8, 10))),
+            Event(
+              date: new DateTime(2019, 2, 25),
+              // title: 'Event 5',
+              icon: _eventIcon,
+            ));
+      });
+    });
+
+    // List<DateModel> attendanceDates = [];
+    // snapshots.map((querySnapshot) {
+    //   querySnapshot.docs.forEach((element) {
+    //     attendanceDates.add(DateModel.fromMap(
+    //         id: element.id, map: element.data() as Map<String, dynamic>));
+    //     datecount++;
+    //   });
+    // });
+
+    // int i = 0;
+    // while (i < attendanceDates.length) {
+    //   // 달력에 지금까지 출석한 날 도장 추가
+    //   _markedDateMap.add(
+    //       new DateTime(
+    //           int.parse(attendanceDates[i].date.substring(
+    //                 0,
+    //               )),
+    //           int.parse(attendanceDates[i].date.substring(5, 7)),
+    //           int.parse(attendanceDates[i].date.substring(8, 10))),
+    //       new Event(
+    //         date: new DateTime(2019, 2, 25),
+    //         // title: 'Event 5',
+    //         icon: _eventIcon,
+    //       ));
+    //   i++;
+    // }
+
+    // datecount = datecount + attendanceDates.length; // 도장찍은 날짜수 출석한 날짜만큼 추가
+
     //   var url = Uri.parse(
     //       "http://localhost:8080/Flutter/learningmate/attendanceLog.jsp?user_id=${user_id}");
     //   var response = await http.get(url);
@@ -281,5 +329,24 @@ class _calendarState extends State<calendar> {
     //     }
     //     datecount = datecount+attendanceDates.length; // 도장찍은 날짜수 출석한 날짜만큼 추가
     //   });
+  }
+}
+
+// 매핑용 클래스 생성
+class DateModel {
+  final String id;
+  final String date;
+
+  DateModel({this.id = '', this.date = ''});
+
+  factory DateModel.fromMap(
+      {required String id, required Map<dynamic, dynamic> map}) {
+    return DateModel(id: id, date: map['date'] ?? '');
+  }
+
+  Map<String, dynamic> toMap() {
+    Map<String, dynamic> data = {};
+    data['date'] = date;
+    return data;
   }
 }

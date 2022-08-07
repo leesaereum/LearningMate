@@ -163,6 +163,7 @@ class _HomeState extends State<Home> {
         ));
   }
 
+  // 로그아웃
   Future<void> signOut() async {
     await Firebase.initializeApp();
 

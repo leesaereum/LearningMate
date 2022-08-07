@@ -23,7 +23,7 @@ class _LoginMainState extends State<LoginMain> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                "./images/logo1.png",
+                "./images/logo.png",
                 width: 120,
               ),
               const SizedBox(height: 30),

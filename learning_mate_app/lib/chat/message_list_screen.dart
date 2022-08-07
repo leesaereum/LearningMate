@@ -6,7 +6,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:learning_mate_app/chat/chat_bubble_test.dart';
 import 'package:learning_mate_app/chat/message_model.dart';
 import 'package:learning_mate_app/static.dart';
 
@@ -328,19 +327,15 @@ class _MessageListScreenState extends State<MessageListScreen> {
                                               )
                                     : Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.end,
+                                            MainAxisAlignment.start,
                                         children: [
                                           Column(
                                             children: [
                                               BubbleSpecialThree(
-                                                text: messages[index].content,
-                                                color: const Color.fromRGBO(
-                                                    255, 128, 0, 10),
-                                                textStyle: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16),
+                                                text: messages[index].manager,
+                                                color: const Color(0xFFE8E8EE),
                                                 tail: true,
-                                                isSender: true,
+                                                isSender: false,
                                               ),
                                               Text(
                                                   messages[index]
