@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,7 @@ class calendar extends StatefulWidget {
 
 class _calendarState extends State<calendar> {
   // 변수 선언
-  List todaycount = []; // 오늘 접속한 기록(['count']0:접속안함,1:접속함)
-  //List attendanceDates = []; // 출석한 날짜들(['date']
+  bool isLoading = false;
   int datecount = 0; // 출석한 날짜 수
   DateTime _currentDate = DateTime.now();
   String today = DateFormat('yyyy-MM-dd').format(DateTime.now());
@@ -106,90 +106,94 @@ class _calendarState extends State<calendar> {
     );
 
     // 앱 화면
-    return Scaffold(
-        appBar: AppBar(
-          title: Image.asset("images/MainLogo2.png", width: 200),
-          backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
-          elevation: 0.8,
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.grey,
-              )),
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Column(
-              children: <Widget>[
-                Container(
-                  margin: const EdgeInsets.only(
-                    top: 30.0,
-                    bottom: 16.0,
-                    left: 16.0,
-                    right: 16.0,
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                          // 년월 출력
-                          child: Text(
-                        _currentMonth,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.0,
-                        ),
-                      )),
-                      TextButton(
-                        // 이전 달 넘어가는 버튼
-                        child: const Text('PREV'),
-                        onPressed: () {
-                          setState(() {
-                            _targetDateTime = DateTime(_targetDateTime.year,
-                                _targetDateTime.month - 1);
-                            _currentMonth = DateFormat.yMMM('ko_KR')
-                                .format(_targetDateTime); // 언어 한국어로 변환
-                          });
-                        },
-                      ),
-                      TextButton(
-                        // 다음 달 넘어가는 버튼
-                        child: const Text('NEXT'),
-                        onPressed: () {
-                          setState(() {
-                            _targetDateTime = DateTime(_targetDateTime.year,
-                                _targetDateTime.month + 1);
-                            _currentMonth = DateFormat.yMMM('ko_KR')
-                                .format(_targetDateTime); // 언어 한국어로 변환
-                          });
-                        },
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: _calendarCarouselNoHeader, // 달력 출력
-                ),
-                Text('이때까지의 출석일은 총 ${datecount.toString()}일 입니다'),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: const Color.fromRGBO(255, 128, 0, 10)),
-                    onPressed: () {
-                      attendanceInsert();
-                    },
-                    child: const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('출석체크 : )',
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold)),
-                    ))
-              ],
+    return isLoading
+        ? Scaffold(
+            appBar: AppBar(
+              title: Image.asset("images/MainLogo2.png", width: 200),
+              backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
+              elevation: 0.8,
+              leading: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.grey,
+                  )),
             ),
-          ),
-        ));
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin: const EdgeInsets.only(
+                        top: 30.0,
+                        bottom: 16.0,
+                        left: 16.0,
+                        right: 16.0,
+                      ),
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                              // 년월 출력
+                              child: Text(
+                            _currentMonth,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 24.0,
+                            ),
+                          )),
+                          TextButton(
+                            // 이전 달 넘어가는 버튼
+                            child: const Text('PREV'),
+                            onPressed: () {
+                              setState(() {
+                                _targetDateTime = DateTime(_targetDateTime.year,
+                                    _targetDateTime.month - 1);
+                                _currentMonth = DateFormat.yMMM('ko_KR')
+                                    .format(_targetDateTime); // 언어 한국어로 변환
+                              });
+                            },
+                          ),
+                          TextButton(
+                            // 다음 달 넘어가는 버튼
+                            child: const Text('NEXT'),
+                            onPressed: () {
+                              setState(() {
+                                _targetDateTime = DateTime(_targetDateTime.year,
+                                    _targetDateTime.month + 1);
+                                _currentMonth = DateFormat.yMMM('ko_KR')
+                                    .format(_targetDateTime); // 언어 한국어로 변환
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: _calendarCarouselNoHeader, // 달력 출력
+                    ),
+                    Text('이때까지의 출석일은 총 ${datecount.toString()}일 입니다'),
+                    const SizedBox(height: 20),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            primary: const Color.fromRGBO(255, 128, 0, 10)),
+                        onPressed: () {
+                          attendanceInsert();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Text('출석체크 : )',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white)),
+                        ))
+                  ],
+                ),
+              ),
+            ))
+        : Scaffold(body: Center(child: CircularProgressIndicator()));
   }
 
   // functions
@@ -271,6 +275,9 @@ class _calendarState extends State<calendar> {
               // title: 'Event 5',
               icon: _eventIcon,
             ));
+      });
+      setState(() {
+        isLoading = true;
       });
     });
 

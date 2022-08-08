@@ -48,11 +48,12 @@ class _MypageState extends State<Mypage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                '마이페이지',
-                style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20),
+              // const Text(
+              //   '마이페이지',
+              //   style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
+              // ),
+              Image.asset('./images/mypage.png'),
+              //const SizedBox(height: 20),
               Text('${Static.nickname}님의 정보',
                   style: const TextStyle(
                       fontSize: 20, fontWeight: FontWeight.bold)),
@@ -88,7 +89,7 @@ class _MypageState extends State<Mypage> {
                       },
                       child: const Text(
                         '닉네임 수정',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       )),
                   const SizedBox(width: 20),
                   ElevatedButton(
@@ -99,7 +100,7 @@ class _MypageState extends State<Mypage> {
                       },
                       child: const Text(
                         '비밀번호 재설정',
-                        style: TextStyle(fontSize: 20),
+                        style: TextStyle(fontSize: 20, color: Colors.white),
                       )),
                 ],
               ),

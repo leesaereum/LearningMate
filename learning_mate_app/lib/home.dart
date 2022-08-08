@@ -16,7 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String nickname = '';
+  bool isLoding = false;
   @override
   void initState() {
     super.initState();
@@ -43,38 +43,41 @@ class _HomeState extends State<Home> {
             },
           ),
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              OutlinedButton(
-                  style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(270, 70),
-                    side: const BorderSide(color: Colors.black26, width: 1),
-                  ),
-                  onPressed: () {
-                    // Navigator.pop(context);
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => const ml()));
-                  },
-                  child: Image.asset('images/ML.png', width: 250)),
-              const SizedBox(height: 30),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(270, 70),
-                  side: const BorderSide(color: Colors.black26, width: 1),
+        body: isLoding
+            ? Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    OutlinedButton(
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size(270, 70),
+                          side:
+                              const BorderSide(color: Colors.black26, width: 1),
+                        ),
+                        onPressed: () {
+                          // Navigator.pop(context);
+                          // Navigator.push(context,
+                          //     MaterialPageRoute(builder: (context) => const ml()));
+                        },
+                        child: Image.asset('images/ML.png', width: 250)),
+                    const SizedBox(height: 30),
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        minimumSize: const Size(270, 70),
+                        side: const BorderSide(color: Colors.black26, width: 1),
+                      ),
+                      onPressed: () {
+                        // Navigator.pop(context);
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (context) => const ml()));
+                      },
+                      child: Image.asset('images/DL.png', width: 250),
+                    ),
+                    const SizedBox(height: 30)
+                  ],
                 ),
-                onPressed: () {
-                  // Navigator.pop(context);
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => const ml()));
-                },
-                child: Image.asset('images/DL.png', width: 250),
-              ),
-              const SizedBox(height: 30)
-            ],
-          ),
-        ),
+              )
+            : Center(child: CircularProgressIndicator()),
         drawer: Drawer(
           child: ListView(
             children: [
@@ -179,6 +182,9 @@ class _HomeState extends State<Home> {
 
   callNickname() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    nickname = pref.getString('nickname')!;
+    Static.nickname = pref.getString('nickname')!;
+    setState(() {
+      isLoding = true;
+    });
   }
 }

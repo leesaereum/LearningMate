@@ -52,15 +52,16 @@ class _SigninState extends State<Signin> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(height: 30),
-                    const Text(
-                      '회원가입',
-                      style: TextStyle(
-                        fontSize: 40,
-                        fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 75, 55, 48),
-                      ),
-                    ),
-                    const SizedBox(height: 50),
+                    // const Text(
+                    //   '회원가입',
+                    //   style: TextStyle(
+                    //     fontSize: 40,
+                    //     fontWeight: FontWeight.bold,
+                    //     color: Color.fromARGB(255, 75, 55, 48),
+                    //   ),
+                    // ),
+                    Image.asset('./images/signup.png'),
+                    //const SizedBox(height: 50),
                     //email
                     Container(
                       height: 100,
@@ -410,7 +411,7 @@ class _SigninState extends State<Signin> {
                         },
                         child: const Text(
                           '가입',
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20, color: Colors.white),
                         ))
                   ],
                 ),

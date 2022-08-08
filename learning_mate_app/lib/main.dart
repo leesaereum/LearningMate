@@ -1,3 +1,4 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_mate_app/firebase_options.dart';
@@ -25,12 +26,18 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: const Main(),
-    );
+        theme: ThemeData(
+          primarySwatch: Colors.orange,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: AnimatedSplashScreen(
+          // 스플래쉬
+          splash: 'images/logo.png',
+          splashIconSize: 200,
+          duration: 1000,
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: Colors.white, nextScreen: const Main(),
+        ));
   }
 }
 

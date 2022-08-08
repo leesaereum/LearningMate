@@ -246,13 +246,11 @@ class _LoginState extends State<Login> {
                         _login();
                       }
                     },
-                    icon: const Icon(
-                      Icons.login,
-                      size: 32,
-                    ),
+                    icon:
+                        const Icon(Icons.login, size: 32, color: Colors.white),
                     label: const Text(
                       "로그인",
-                      style: TextStyle(fontSize: 19),
+                      style: TextStyle(fontSize: 19, color: Colors.white),
                     ),
                     style: ElevatedButton.styleFrom(
                       primary: const Color.fromARGB(255, 255, 127, 0),
@@ -273,13 +271,11 @@ class _LoginState extends State<Login> {
                               builder: (context) => const Signin(),
                             ));
                       },
-                      icon: const Icon(
-                        Icons.email_rounded,
-                        size: 32,
-                      ),
+                      icon: const Icon(Icons.email_rounded,
+                          size: 32, color: Colors.white),
                       label: const Text(
                         "이메일로 가입하기",
-                        style: TextStyle(fontSize: 19),
+                        style: TextStyle(fontSize: 19, color: Colors.white),
                       ),
                       style: ElevatedButton.styleFrom(
                         primary: const Color.fromARGB(255, 255, 127, 0),
