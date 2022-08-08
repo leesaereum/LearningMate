@@ -175,6 +175,7 @@ class _HomeState extends State<Home> {
       final SharedPreferences pref = await SharedPreferences.getInstance();
       pref.setString('id', '');
       pref.setString('nickname', '');
+      LogoutSnackBar(context);
     } catch (e) {
       print(e.toString());
     }
@@ -186,5 +187,15 @@ class _HomeState extends State<Home> {
     setState(() {
       isLoding = true;
     });
+  }
+
+  LogoutSnackBar(BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('로그아웃이 완료되었습니다 :)'),
+        duration: Duration(seconds: 3),
+        backgroundColor: Colors.red,
+      ),
+    );
   }
 }

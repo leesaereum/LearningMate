@@ -252,6 +252,9 @@ class _calendarState extends State<calendar> {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       firestore.collection('check/${Static.id}/check').doc(today).set(data);
       attendanceSnackBar(context);
+      _markedDateMap.clear();
+      datecount = 0;
+      attendanceLog();
     } catch (ex) {
       log('error)', error: ex.toString(), stackTrace: StackTrace.current);
     }
@@ -280,62 +283,6 @@ class _calendarState extends State<calendar> {
         isLoading = true;
       });
     });
-
-    // List<DateModel> attendanceDates = [];
-    // snapshots.map((querySnapshot) {
-    //   querySnapshot.docs.forEach((element) {
-    //     attendanceDates.add(DateModel.fromMap(
-    //         id: element.id, map: element.data() as Map<String, dynamic>));
-    //     datecount++;
-    //   });
-    // });
-
-    // int i = 0;
-    // while (i < attendanceDates.length) {
-    //   // 달력에 지금까지 출석한 날 도장 추가
-    //   _markedDateMap.add(
-    //       new DateTime(
-    //           int.parse(attendanceDates[i].date.substring(
-    //                 0,
-    //               )),
-    //           int.parse(attendanceDates[i].date.substring(5, 7)),
-    //           int.parse(attendanceDates[i].date.substring(8, 10))),
-    //       new Event(
-    //         date: new DateTime(2019, 2, 25),
-    //         // title: 'Event 5',
-    //         icon: _eventIcon,
-    //       ));
-    //   i++;
-    // }
-
-    // datecount = datecount + attendanceDates.length; // 도장찍은 날짜수 출석한 날짜만큼 추가
-
-    //   var url = Uri.parse(
-    //       "http://localhost:8080/Flutter/learningmate/attendanceLog.jsp?user_id=${user_id}");
-    //   var response = await http.get(url);
-    //   setState(() {
-    //     var JSON = json.decode(utf8.decode(response.bodyBytes));
-    //     if (JSON['result'] != null) {
-    //       List result = JSON['result'];
-    //       attendanceDates.addAll(result);
-    //       print(result);
-    //       int i = 0;
-    //       while (i < attendanceDates.length) { // 달력에 지금까지 출석한 날 도장 추가
-    //         _markedDateMap.add(
-    //             new DateTime(
-    //                 int.parse(attendanceDates[i]['date'].substring(0, 4)),
-    //                 int.parse(attendanceDates[i]['date'].substring(5, 7)),
-    //                 int.parse(attendanceDates[i]['date'].substring(8, 10))),
-    //             new Event(
-    //               date: new DateTime(2019, 2, 25),
-    //               // title: 'Event 5',
-    //               icon: _eventIcon,
-    //             ));
-    //         i++;
-    //       }
-    //     }
-    //     datecount = datecount+attendanceDates.length; // 도장찍은 날짜수 출석한 날짜만큼 추가
-    //   });
   }
 }
 

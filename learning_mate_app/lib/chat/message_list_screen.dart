@@ -327,15 +327,19 @@ class _MessageListScreenState extends State<MessageListScreen> {
                                               )
                                     : Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.start,
+                                            MainAxisAlignment.end,
                                         children: [
                                           Column(
                                             children: [
                                               BubbleSpecialThree(
-                                                text: messages[index].manager,
-                                                color: const Color(0xFFE8E8EE),
+                                                text: messages[index].content,
+                                                color: const Color.fromRGBO(
+                                                    255, 128, 0, 10),
                                                 tail: true,
-                                                isSender: false,
+                                                isSender: true,
+                                                textStyle: TextStyle(
+                                                    color: Colors.white,
+                                                    fontSize: 16),
                                               ),
                                               Text(
                                                   messages[index]
@@ -489,6 +493,7 @@ class _MessageListScreenState extends State<MessageListScreen> {
           MessageModel messageModel = MessageModel(
               content: 'User', image: url, sendDate: Timestamp.now());
           new_city_ref.set(messageModel.toMap());
+          lastdown();
         } catch (ex) {
           log('error)', error: ex.toString(), stackTrace: StackTrace.current);
         }
