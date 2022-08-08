@@ -1,12 +1,33 @@
-import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-const express = require("express");
+import express from 'express';
+import { initializeApp } from "firebase/app";
+//import { getAnalytics } from "firebase/analytics";
+const firebaseapp = initializeApp(firebaseConfig);
 const app = express();
-const bodyParser = require('body-parser');
-const cors = require("cors")
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 
+
+//firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyCj4fG1yaJOHYXPUDsfNoGUxBlXitOGUKg",
+  authDomain: "learningmate-fe6a1.firebaseapp.com",
+  databaseURL: "https://learningmate-fe6a1-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "learningmate-fe6a1",
+  storageBucket: "learningmate-fe6a1.appspot.com",
+  messagingSenderId: "215167370497",
+  appId: "1:215167370497:web:cc950598d5e48866940700",
+  measurementId: "G-13CYRYX878"
+  };
+
+// Initialize Firebase
+//const analytics = getAnalytics(app);
+
+//port
+const PORT = 5000;
 //admin SDK
-var admin = require("firebase-admin");
-var serviceAccount = require("./serviceAccountKey.json");
+import admin from "firebase-admin";
+import serviceAccount from "./serviceAccountKey.json" assert {type: 'json'};
+import ejs from "ejs";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -14,33 +35,91 @@ admin.initializeApp({
 });
 
 
-app.use(cors());
-var jsonParser = bodyParser.json()
+app.set('view engine', 'ejs');  
+app.engine("html",ejs.renderFile);
+// style 적용 
+app.use(express.static("static"));
 
-app.get("/status", (req, res) => {
-    res.send("check Status");
+
+app.use(bodyParser.json());
+app.use(cookieParser());
+
+// //all > 주석제거하면 무조건 다 all로 감
+// app.all("*",(req, res, next) => {
+//   console.log('hi')
+//   res.status(200).render('index.html')
+//   // res.cookie("XSRF-TOKEN", req.csrfToken);
+// });
+
+//session login
+app.post("/sessionLogin", (req, res) => {
+  const idToken = req.body.idToken.toString;
+  const expiresin = 60 * 60 * 24 * 5 * 1000;
+  admin
+  .auth()
+  .createSessionCookie(idToken,{expiresin})
+  .then(
+
+      (sessionCookie) => {
+        const options = {maxAge: expiresin, httpOnly: true};
+        res.cookie("session", sessionCookie,options);
+        res.end(JSON.stringify({status:"success"}));
+      },
+      //error
+      (error) => {
+      res.status(401).send("UNAUTHORIZED Request");
+      res.redirect("/login");
+      }
+  )
 });
 
-// The app only has access as defined in the Security Rules
+//첫 주소
+app.get("/",function(req, res) {
+  console.log('/index');
+  res.render("index.html");
+});
+
+// 프로필 상태
+app.get("/status", function (req, res) {
+  console.log('status');
+  res.render("status.html");
+});
+
+// 회원가입
+app.get("/signup", function (req, res){
+  console.log('signup');
+  res.render("signup.html");
+});
+
+
+// 프로필 
+app.get("/profile", function (req, res){
+  const sessionCookie = req.cookie.session || "";
+  admin.auth().verifySessionCookie(sessionCookie,true)
+  .then( () => {
+        res.render("profile.html");
+  })
+  .catch((error) => {
+    res.redirect("/login");
+  });
+});
+
+//logout 
+app.get("/sessionLogout",(req, res) => {
+      res.clearCookie("session");
+      res.redirect("/login");
+});
+
+
+//The app only has access as defined in the Security Rules
 var db = admin.database();
-//주소창 
 var ref = db.ref("/some_resource");
 ref.once("value", function(snapshot) {
   console.log(snapshot.val());
 });
 
-  //비밀번호 재설정 이메일 보내기 
-const auth = getAuth();
-sendPasswordResetEmail(auth, email)
-    .then(() => {
-      // Password reset email sent!
-      // ..
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    });
-
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT}`);
+} );
 
 
