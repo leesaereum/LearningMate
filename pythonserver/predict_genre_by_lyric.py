@@ -1,7 +1,7 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from tensorflow import keras
 import numpy as np
-import jsonify
+# import jsonify
 import json
 
 from konlpy.tag import Okt
@@ -9,7 +9,7 @@ okt = Okt()
 
 app = Flask(__name__)
 
-@app.route('/predictgenrebylstm', methods=['POST'])
+@app.route('/predictgenrebylstm', methods=['get'])
 def predict_genre_by_dl():
     # parameter로 넘어온 lyric을 받습니다.
     lyric = request.args.get('lyric')

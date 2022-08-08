@@ -3,8 +3,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:learning_mate_app/calendar/calendar.dart';
 import 'package:learning_mate_app/chat/message_list_screen.dart';
+import 'package:learning_mate_app/diamond/diamondMenu.dart';
 import 'package:learning_mate_app/login/mypage.dart';
 import 'package:learning_mate_app/main.dart';
+import 'package:learning_mate_app/mylist/mylist.dart';
+import 'package:learning_mate_app/song/songMenu.dart';
 import 'package:learning_mate_app/static.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -53,9 +56,8 @@ class _HomeState extends State<Home> {
                     side: const BorderSide(color: Colors.black26, width: 1),
                   ),
                   onPressed: () {
-                    // Navigator.pop(context);
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) => const ml()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const DiamondMenu()));
                   },
                   child: Image.asset('images/ML.png', width: 250)),
               const SizedBox(height: 30),
@@ -65,9 +67,8 @@ class _HomeState extends State<Home> {
                   side: const BorderSide(color: Colors.black26, width: 1),
                 ),
                 onPressed: () {
-                  // Navigator.pop(context);
-                  // Navigator.push(context,
-                  //     MaterialPageRoute(builder: (context) => const ml()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const SongMenu()));
                 },
                 child: Image.asset('images/DL.png', width: 250),
               ),
@@ -117,7 +118,14 @@ class _HomeState extends State<Home> {
                     title: const Text('CALENDAR'),
                   ),
                   ListTile(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Mylist(),
+                          ));
+                    },
                     leading: const Icon(
                       Icons.list,
                       color: Color.fromRGBO(0, 77, 3, 10),
@@ -179,6 +187,6 @@ class _HomeState extends State<Home> {
 
   callNickname() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-    nickname = pref.getString('nickname')!;
+    // nickname = pref.getString('nickname')!;
   }
 }
