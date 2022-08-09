@@ -68,6 +68,7 @@ class _SigninState extends State<Signin> {
                       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: TextFormField(
                         controller: id,
+                        keyboardType: TextInputType.emailAddress,
                         //유효성검사
                         validator: (value) {
                           if (value == null || value.isEmpty) {

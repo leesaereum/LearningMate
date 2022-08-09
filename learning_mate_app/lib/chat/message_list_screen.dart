@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:learning_mate_app/chat/message_model.dart';
+import 'package:learning_mate_app/chat/openimage.dart';
 import 'package:learning_mate_app/static.dart';
 
 class MessageListScreen extends StatefulWidget {
@@ -125,23 +126,37 @@ class _MessageListScreenState extends State<MessageListScreen> {
                                                   padding:
                                                       const EdgeInsets.fromLTRB(
                                                           0, 5, 8, 5),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius
-                                                                .circular(30),
-                                                        border: Border.all(
-                                                          width: 8,
-                                                          color: const Color
-                                                                  .fromRGBO(
-                                                              255, 128, 0, 10),
+                                                  child: GestureDetector(
+                                                    onTap: () => Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              openImage(
+                                                                  images: messages[
+                                                                          index]
+                                                                      .image),
                                                         )),
-                                                    //color: const Color.fromRGBO(
-                                                    //    255, 128, 0, 10),
-                                                    child: Image.network(
-                                                      messages[index].image,
-                                                      width: 150,
-                                                      height: 150,
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(30),
+                                                          border: Border.all(
+                                                            width: 8,
+                                                            color: const Color
+                                                                    .fromRGBO(
+                                                                255,
+                                                                128,
+                                                                0,
+                                                                10),
+                                                          )),
+                                                      //color: const Color.fromRGBO(
+                                                      //    255, 128, 0, 10),
+                                                      child: Image.network(
+                                                        messages[index].image,
+                                                        width: 150,
+                                                        height: 150,
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -325,36 +340,68 @@ class _MessageListScreenState extends State<MessageListScreen> {
                                                 tail: false,
                                                 isSender: false,
                                               )
-                                    : Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Column(
+                                    : messages[index].manager.isNotEmpty
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             children: [
-                                              BubbleSpecialThree(
-                                                text: messages[index].content,
-                                                color: const Color.fromRGBO(
-                                                    255, 128, 0, 10),
-                                                tail: true,
-                                                isSender: true,
-                                                textStyle: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 16),
+                                              Column(
+                                                children: [
+                                                  BubbleSpecialThree(
+                                                    text:
+                                                        messages[index].manager,
+                                                    color: Color(0xFFE8E8EE),
+                                                    tail: true,
+                                                    isSender: false,
+                                                    // textStyle: TextStyle(
+                                                    //     color: Colors.white,
+                                                    //     fontSize: 16),
+                                                  ),
+                                                  Text(
+                                                      messages[index]
+                                                          .sendDate
+                                                          .toDate()
+                                                          .toLocal()
+                                                          .toString()
+                                                          .substring(5, 16),
+                                                      style: const TextStyle(
+                                                          color: Colors.grey,
+                                                          fontSize: 12))
+                                                ],
                                               ),
-                                              Text(
-                                                  messages[index]
-                                                      .sendDate
-                                                      .toDate()
-                                                      .toLocal()
-                                                      .toString()
-                                                      .substring(5, 16),
-                                                  style: const TextStyle(
-                                                      color: Colors.grey,
-                                                      fontSize: 12))
                                             ],
-                                          ),
-                                        ],
-                                      );
+                                          )
+                                        : Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Column(
+                                                children: [
+                                                  BubbleSpecialThree(
+                                                      text: messages[index]
+                                                          .content,
+                                                      color:
+                                                          const Color.fromRGBO(
+                                                              255, 128, 0, 10),
+                                                      tail: true,
+                                                      textStyle: TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 16)),
+                                                  Text(
+                                                    messages[index]
+                                                        .sendDate
+                                                        .toDate()
+                                                        .toLocal()
+                                                        .toString()
+                                                        .substring(5, 16),
+                                                    style: const TextStyle(
+                                                        color: Colors.grey,
+                                                        fontSize: 12),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          );
                           })),
                   getInputWidget(),
                 ],

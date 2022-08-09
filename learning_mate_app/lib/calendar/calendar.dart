@@ -251,10 +251,12 @@ class _calendarState extends State<calendar> {
     try {
       FirebaseFirestore firestore = FirebaseFirestore.instance;
       firestore.collection('check/${Static.id}/check').doc(today).set(data);
-      attendanceSnackBar(context);
-      _markedDateMap.clear();
-      datecount = 0;
-      attendanceLog();
+      setState(() {
+        attendanceSnackBar(context);
+        _markedDateMap.clear();
+        datecount = 0;
+        //attendanceLog();
+      });
     } catch (ex) {
       log('error)', error: ex.toString(), stackTrace: StackTrace.current);
     }
