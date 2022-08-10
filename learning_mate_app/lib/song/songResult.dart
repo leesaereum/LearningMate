@@ -8,7 +8,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:http/http.dart' as http;
 import 'package:learning_mate_app/diamond/diamond_model.dart';
 import 'package:learning_mate_app/login/join_model.dart';
-import 'package:learning_mate_app/song/song_model.dart';
 import 'package:learning_mate_app/static.dart';
 import 'package:intl/intl.dart' show DateFormat;
 
@@ -51,45 +50,69 @@ class _SongResultState extends State<SongResult> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              const Text(
-                '가사 예측 결과',
-                style:  TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 77, 3, 10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const Text(
+                  '가사 예측 결과',
+                  style:  TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(0, 77, 3, 10),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Text(
-                '결과 : $result',
-                style: const TextStyle(
-                    fontSize: 30,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20,),
-              ElevatedButton(
+                const SizedBox(
+                  height: 100,
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                Text(
+                  '결과 : $result',
+                  style: const TextStyle(
+                      fontSize: 30,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 80,),
+                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                        primary: const Color.fromRGBO(255, 128, 0, 10),
+                        minimumSize: const Size(150, 40),
+                        maximumSize: const Size(150, 40),
+                      ),
+                    onPressed: () {
+                      _showDialog(context);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const[
+                        Icon(Icons.download),
+                        SizedBox(width: 10,),
+                        Text("저장하기",style: TextStyle(fontSize: 16),),
+                      ],
+                    )),
+                ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                        primary: const Color.fromRGBO(255, 128, 0, 10),
+                        minimumSize: const Size(150, 40),
+                        maximumSize: const Size(150, 40),
+                      ),
                   onPressed: () {
-                    _showDialog(context);
-                  },
-                  child: Text("저장하기")),
-              ElevatedButton(onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              }, 
-              child: Text("돌아가기")),
-            ],
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                }, 
+                child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const[
+                        Icon(Icons.home),
+                        SizedBox(width: 10,),
+                        Text("돌아가기",style: TextStyle(fontSize: 16),),
+                      ],
+                    )),
+              ],
+            ),
           ),
         ),
       ),
@@ -111,14 +134,8 @@ class _SongResultState extends State<SongResult> {
       DiamondModel songModel = DiamondModel(
         title: title.text,
         carat: "",
-        cut: "",
-        color: "",
         clarity: "",
-        depth: "",
-        table: "",
-        x: "",
         y: "",
-        z: "",
         lyric: widget.lyric,
         result: result,
         date: DateFormat('yyyy-MM-dd').format(DateTime.now()),

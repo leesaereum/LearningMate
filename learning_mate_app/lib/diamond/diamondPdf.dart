@@ -41,7 +41,7 @@ class _DiamondPdfState extends State<DiamondPdf> with WidgetsBindingObserver {
           PDFView(
             filePath: widget.path,
             enableSwipe: true,
-            swipeHorizontal: true,
+            swipeHorizontal: false,
             autoSpacing: false,
             pageFling: true,
             pageSnap: true,
@@ -90,21 +90,6 @@ class _DiamondPdfState extends State<DiamondPdf> with WidgetsBindingObserver {
                   child: Text(errorMessage),
                 )
         ],
-      ),
-      floatingActionButton: FutureBuilder<PDFViewController>(
-        future: _controller.future,
-        builder: (context, AsyncSnapshot<PDFViewController> snapshot) {
-          if (snapshot.hasData) {
-            return FloatingActionButton.extended(
-              label: Text("Go to ${pages! ~/ 2}"),
-              onPressed: () async {
-                await snapshot.data!.setPage(pages! ~/ 2);
-              },
-            );
-          }
-
-          return Container();
-        },
       ),
     );
   }

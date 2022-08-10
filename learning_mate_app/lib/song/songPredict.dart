@@ -17,31 +17,50 @@ class _SongPredictState extends State<SongPredict> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Image.asset("images/MainLogo2.png", width: 200),
-          backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
-          elevation: 0.8,
-          leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              icon: const Icon(
-                Icons.arrow_back,
-                color: Colors.grey,
-              )),
-        ),
-      body: Center(
+      appBar: AppBar(
+        title: Image.asset("images/MainLogo2.png", width: 200),
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 2),
+        elevation: 0.8,
+        leading: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.grey,
+            )),
+      ),
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
+              const SizedBox(height: 50,),
+                                const Text(
+                "노래 가사 입력하기",
+                style: TextStyle(
+                  fontSize: 32, 
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(0, 77, 3, 10),
+                ),
+                
+              ),
+              const SizedBox(height: 50,),
+                const Text(
+                "가사를 입력하세요.",
+                style: TextStyle(fontSize: 24,
+                color: Color.fromRGBO(0, 77, 3, 10),),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
                 TextField(
                   controller: lyric,
+                  minLines: 10,
+                  maxLines: 10,
                   decoration: InputDecoration(
-                    labelText: 'lyric',
+                    labelText: '가사',
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.grey),
@@ -57,28 +76,39 @@ class _SongPredictState extends State<SongPredict> {
                 const SizedBox(
                   height: 10,
                 ),
-                
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Color.fromRGBO(255, 128, 0, 10),
-                    minimumSize: Size(150, 40)
-                  ),
+                    style: ElevatedButton.styleFrom(
+                        primary: Color.fromRGBO(255, 128, 0, 10),
+                     minimumSize: const Size(150, 40),
+                      maximumSize: const Size(150, 40)),
                     onPressed: () {
                       if (lyric.text.trim().isEmpty) {
                         nullSnackBar(context);
                       } else {
                         Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SongResult(
-                                lyric: lyric.text),
-                              ),
-                            
-                            );
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SongResult(lyric: lyric.text),
+                          ),
+                        );
                       }
                     },
-                    child: const Text("예측하기")),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.search),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "예측하기",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    )),
               ],
             ),
           ),

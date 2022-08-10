@@ -13,26 +13,14 @@ import 'package:intl/intl.dart' show DateFormat;
 
 class DiamondResult extends StatefulWidget {
   final double carat;
-  final double cut;
-  final double color;
   final double clarity;
-  final double depth;
-  final double table;
-  final double x;
   final double y;
-  final double z;
 
   const DiamondResult({
     Key? key,
     required this.carat,
-    required this.cut,
-    required this.color,
     required this.clarity,
-    required this.depth,
-    required this.table,
-    required this.x,
     required this.y,
-    required this.z,
   }) : super(key: key);
 
   @override
@@ -40,11 +28,10 @@ class DiamondResult extends StatefulWidget {
 }
 
 class _DiamondResultState extends State<DiamondResult> {
-  List cutlist = ["Fair", "Good", "Very Good", "Premium", "Ideal"];
-  List colorlist = ["J", "I", "H", "G", "F", "E", "D"];
   List claritylist = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF"];
   String result = "0";
   TextEditingController title = TextEditingController();
+  
 
   @override
   void initState() {
@@ -69,186 +56,131 @@ class _DiamondResultState extends State<DiamondResult> {
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 40,
-              ),
-              Text(
-                '다이아몬드 예측 결과',
-                style: const TextStyle(
-                  fontSize: 40,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromRGBO(0, 77, 3, 10),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 40,
                 ),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Text(
-                        'carat : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'cut : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'clarity : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'color : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'depth : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'table : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'x : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'y : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        'z : ',
-                        style: TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
+                const Text(
+                  '다이아몬드 예측 결과',
+                  style: TextStyle(
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(0, 77, 3, 10),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '${widget.carat}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Text(
+                          'carat : ',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'clarity : ',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          'width : ',
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '${widget.carat}',
+                          style: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${claritylist[widget.clarity.toInt()]}',
+                          style: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          '${widget.y}',
+                          style: const TextStyle(
+                              fontSize: 25,
+                              color: Colors.black54,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 80,
+                ),
+                Text(
+                  '결과 : \$${double.parse(result).round()}',
+                  style: const TextStyle(
+                      fontSize: 30,
+                      color: Colors.black54,
+                      fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 50,),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                        primary: const Color.fromRGBO(255, 128, 0, 10),
+                        minimumSize: const Size(150, 40),
+                        maximumSize: const Size(150, 40),
                       ),
-                      Text(
-                        '${cutlist[widget.cut.toInt()]}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
+                    onPressed: () {
+                      _showDialog(context);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const[
+                        Icon(Icons.download),
+                        SizedBox(width: 10,),
+                        Text("저장하기",style: TextStyle(fontSize: 16),),
+                      ],
+                    )),
+                    const SizedBox(height: 10,),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                        primary: const Color.fromRGBO(255, 128, 0, 10),
+                        minimumSize: const Size(150, 40),
+                        maximumSize: const Size(150, 40),
                       ),
-                      Text(
-                        '${claritylist[widget.clarity.toInt()]}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${colorlist[widget.color.toInt()]}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${widget.depth}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${widget.table}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${widget.x}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${widget.y}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                      Text(
-                        '${widget.z}',
-                        style: const TextStyle(
-                            fontSize: 25,
-                            color: Colors.black54,
-                            fontWeight: FontWeight.bold),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              Text(
-                '결과 : ${double.parse(result).round()}',
-                style: const TextStyle(
-                    fontSize: 30,
-                    color: Colors.black54,
-                    fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 20,),
-              ElevatedButton(
                   onPressed: () {
-                    _showDialog(context);
-                  },
-                  child: Text("저장하기")),
-              ElevatedButton(onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              }, 
-              child: Text("돌아가기")),
-            ],
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                  Navigator.of(context).pop();
+                }, 
+                child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const[
+                        Icon(Icons.home),
+                        SizedBox(width: 10,),
+                        Text("돌아가기",style: TextStyle(fontSize: 16),),
+                      ],
+                    )),
+                    // const SizedBox(height: 300,)
+              ],
+            ),
           ),
         ),
       ),
@@ -257,7 +189,7 @@ class _DiamondResultState extends State<DiamondResult> {
 
   void getJSONData() async {
     var url = Uri.parse(
-        'http://localhost:5000/diamond?carat=${widget.carat}&cut=${widget.cut+1}&color=${widget.color+1}&clarity=${widget.clarity+1}&depth=${widget.depth}&table=${widget.table}&x=${widget.x}&y=${widget.y}&z=${widget.z}');
+        'http://localhost:5000/diamond?carat=${widget.carat}&clarity=${widget.clarity+1}&width=${widget.y}');
     var response = await http.get(url);
     setState(() {
       var dataConvertedJSON = json.decode(utf8.decode(response.bodyBytes));
@@ -273,14 +205,8 @@ class _DiamondResultState extends State<DiamondResult> {
       DiamondModel diamondModel = DiamondModel(
         title: title.text,
         carat: widget.carat.toString(),
-        cut: widget.cut.toString(),
-        color: widget.color.toString(),
         clarity: widget.clarity.toString(),
-        depth: widget.depth.toString(),
-        table: widget.table.toString(),
-        x: widget.x.toString(),
         y: widget.y.toString(),
-        z: widget.z.toString(),
         lyric: "",
         result: result,
         date: DateFormat('yyyy-MM-dd').format(DateTime.now()),

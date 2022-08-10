@@ -19,11 +19,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  String nickname = '';
+  String nickname = '닉네임 변경';
   @override
   void initState() {
     super.initState();
-    callNickname();
+    // callNickname();
+    Static.nickname='닉네임 변경';
   }
 
   @override
@@ -52,25 +53,59 @@ class _HomeState extends State<Home> {
             children: [
               OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    minimumSize: const Size(270, 70),
+                    minimumSize: const Size(300, 70),
+                    maximumSize: const Size(300, 70),
                     side: const BorderSide(color: Colors.black26, width: 1),
                   ),
                   onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const DiamondMenu()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DiamondMenu()));
                   },
-                  child: Image.asset('images/ML.png', width: 250)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(Icons.diamond,color: Color.fromARGB(246, 0, 221, 255),),
+                      SizedBox(width: 10,),
+                      Text(
+                        "PRICE PREDICT",
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 128, 0, 10),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  )),
               const SizedBox(height: 30),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  minimumSize: const Size(270, 70),
+                  minimumSize: const Size(300, 70),
+                  maximumSize: const Size(300, 70),
                   side: const BorderSide(color: Colors.black26, width: 1),
                 ),
                 onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const SongMenu()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const SongMenu()));
                 },
-                child: Image.asset('images/DL.png', width: 250),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.music_note,color: Color.fromARGB(246, 255, 217, 94),),
+                    SizedBox(width: 10,),
+                    Text(
+                      "GENRE PREDICT",
+                      style: TextStyle(
+                        color: Color.fromRGBO(255, 128, 0, 10),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 30)
             ],
@@ -185,8 +220,8 @@ class _HomeState extends State<Home> {
     }
   }
 
-  callNickname() async {
-    final SharedPreferences pref = await SharedPreferences.getInstance();
-    // nickname = pref.getString('nickname')!;
-  }
+  // callNickname() async {
+  //   final SharedPreferences pref = await SharedPreferences.getInstance();
+  //   // nickname = pref.getString('nickname')!;
+  // }
 }

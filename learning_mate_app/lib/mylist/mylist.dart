@@ -93,71 +93,71 @@ class _MylistState extends State<Mylist> {
                                           style: const TextStyle(
                                               color: Colors.grey)),
                                       SizedBox(width: 120),
-                                      IconButton(
-                                          onPressed: () {
-                                            showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return AlertDialog(
-                                                    title: const Text(
-                                                        '리스트를 삭제하시겠습니까?'),
-                                                    actions: [
-                                                      Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                              // delete(mylist[
-                                                              //         index][
-                                                              //     'list_num']);
-                                                              // print(index);
-                                                            },
-                                                            child: const Text(
-                                                              '예',
-                                                              style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  color: Color
-                                                                      .fromARGB(
-                                                                          255,
-                                                                          4,
-                                                                          31,
-                                                                          56)),
-                                                            ),
-                                                          ),
-                                                          const SizedBox(
-                                                              width: 40),
-                                                          TextButton(
-                                                            onPressed: () {
-                                                              Navigator.pop(
-                                                                  context);
-                                                            },
-                                                            child: const Text(
-                                                              '아니오',
-                                                              style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  color: Color
-                                                                      .fromARGB(
-                                                                          255,
-                                                                          4,
-                                                                          31,
-                                                                          56)),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ],
-                                                  );
-                                                });
-                                          },
-                                          icon: const Icon(
-                                            Icons.highlight_remove,
-                                            color: Colors.grey,
-                                          ))
+                                      // IconButton(
+                                      //     onPressed: () {
+                                      //       showDialog(
+                                      //           context: context,
+                                      //           builder:
+                                      //               (BuildContext context) {
+                                      //             return AlertDialog(
+                                      //               title: const Text(
+                                      //                   '리스트를 삭제하시겠습니까?'),
+                                      //               actions: [
+                                      //                 Row(
+                                      //                   mainAxisAlignment:
+                                      //                       MainAxisAlignment
+                                      //                           .center,
+                                      //                   children: [
+                                      //                     TextButton(
+                                      //                       onPressed: () {
+                                      //                         Navigator.pop(
+                                      //                             context);
+                                      //                         // delete(mylist[
+                                      //                         //         index][
+                                      //                         //     'list_num']);
+                                      //                         // print(index);
+                                      //                       },
+                                      //                       child: const Text(
+                                      //                         '예',
+                                      //                         style: TextStyle(
+                                      //                             fontSize: 20,
+                                      //                             color: Color
+                                      //                                 .fromARGB(
+                                      //                                     255,
+                                      //                                     4,
+                                      //                                     31,
+                                      //                                     56)),
+                                      //                       ),
+                                      //                     ),
+                                      //                     const SizedBox(
+                                      //                         width: 40),
+                                      //                     TextButton(
+                                      //                       onPressed: () {
+                                      //                         Navigator.pop(
+                                      //                             context);
+                                      //                       },
+                                      //                       child: const Text(
+                                      //                         '아니오',
+                                      //                         style: TextStyle(
+                                      //                             fontSize: 20,
+                                      //                             color: Color
+                                      //                                 .fromARGB(
+                                      //                                     255,
+                                      //                                     4,
+                                      //                                     31,
+                                      //                                     56)),
+                                      //                       ),
+                                      //                     ),
+                                      //                   ],
+                                      //                 ),
+                                      //               ],
+                                      //             );
+                                      //           });
+                                      //     },
+                                      //     icon: const Icon(
+                                      //       Icons.highlight_remove,
+                                      //       color: Colors.grey,
+                                      //     ))
                                     ],
                                   ),
                                 ),

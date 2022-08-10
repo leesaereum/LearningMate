@@ -12,16 +12,8 @@ class DiamondPredict extends StatefulWidget {
 
 class _DiamondPredictState extends State<DiamondPredict> {
   TextEditingController carat = TextEditingController();
-  TextEditingController depth = TextEditingController();
-  TextEditingController table = TextEditingController();
-  TextEditingController x = TextEditingController();
   TextEditingController y = TextEditingController();
-  TextEditingController z = TextEditingController();
-  int cut = 0;
-  int color = 0;
   int clarity = 0;
-  List cutlist = ["Fair", "Good", "Very Good", "Premium", "Ideal"];
-  List colorlist = ["J", "I", "H", "G", "F", "E", "D"];
   List claritylist = ["I1", "SI2", "SI1", "VS2", "VS1", "VVS2", "VVS1", "IF"];
 
   @override
@@ -38,7 +30,8 @@ class _DiamondPredictState extends State<DiamondPredict> {
               color: Colors.grey,
             )),
       ),
-      body: Center(
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: SingleChildScrollView(
@@ -46,7 +39,27 @@ class _DiamondPredictState extends State<DiamondPredict> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 20,
+                  height: 50,
+                ),
+                const Text(
+                  "다이아몬드 정보 입력하기",
+                  style: TextStyle(
+                    fontSize: 32, 
+                    fontWeight: FontWeight.bold,
+                    color: Color.fromRGBO(0, 77, 3, 10),
+                  ),
+                  
+                ),
+                const SizedBox(
+                  height: 50,
+                ),
+                const Text(
+                  "Carat",
+                  style: TextStyle(fontSize: 24,
+                  color: Color.fromRGBO(0, 77, 3, 10),),
+                ),
+                const SizedBox(
+                  height: 10,
                 ),
                 TextField(
                   controller: carat,
@@ -59,7 +72,7 @@ class _DiamondPredictState extends State<DiamondPredict> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 4, 31, 56)),
+                          width: 2, color: Color.fromRGBO(0, 77, 3, 10)),
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
@@ -69,65 +82,10 @@ class _DiamondPredictState extends State<DiamondPredict> {
                 const SizedBox(
                   height: 10,
                 ),
-                TextField(
-                  controller: depth,
-                  decoration: InputDecoration(
-                    labelText: 'depth',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 4, 31, 56)),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  controller: table,
-                  decoration: InputDecoration(
-                    labelText: 'table',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 4, 31, 56)),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  controller: x,
-                  decoration: InputDecoration(
-                    labelText: 'x',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 4, 31, 56)),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
+                const Text(
+                  "Width",
+                  style: TextStyle(fontSize: 24,
+                  color: Color.fromRGBO(0, 77, 3, 10),),
                 ),
                 const SizedBox(
                   height: 10,
@@ -135,7 +93,7 @@ class _DiamondPredictState extends State<DiamondPredict> {
                 TextField(
                   controller: y,
                   decoration: InputDecoration(
-                    labelText: 'y',
+                    labelText: 'width',
                     enabledBorder: OutlineInputBorder(
                       borderSide:
                           const BorderSide(width: 2, color: Colors.grey),
@@ -143,142 +101,20 @@ class _DiamondPredictState extends State<DiamondPredict> {
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 4, 31, 56)),
+                          width: 2, color: Color.fromRGBO(0, 77, 3, 10)),
                       borderRadius: BorderRadius.circular(15),
                     ),
                   ),
                   keyboardType:
                       const TextInputType.numberWithOptions(decimal: true),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                  controller: z,
-                  decoration: InputDecoration(
-                    labelText: 'z',
-                    enabledBorder: OutlineInputBorder(
-                      borderSide:
-                          const BorderSide(width: 2, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: const BorderSide(
-                          width: 2, color: Color.fromARGB(255, 4, 31, 56)),
-                      borderRadius: BorderRadius.circular(15),
-                    ),
-                  ),
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "Cut",
-                  style: TextStyle(fontSize: 24),
-                ),
-                // cut 선택
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (cut == 0) {
-                            cut = cutlist.length - 1;
-                          } else {
-                            cut = cut - 1;
-                          }
-                        });
-                      },
-                      icon: const Icon(Icons.arrow_left),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: Center(
-                          child: Text(
-                        cutlist[cut],
-                        style: const TextStyle(fontSize: 20),
-                      )),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (cut == cutlist.length - 1) {
-                            cut = 0;
-                          } else {
-                            cut = cut + 1;
-                          }
-                        });
-                      },
-                      icon: const Icon(Icons.arrow_right),
-                    ),
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                const Text(
-                  "Color",
-                  style: TextStyle(fontSize: 24),
-                ),
-                // Color 선택
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (color == 0) {
-                            color = colorlist.length - 1;
-                          } else {
-                            color = color - 1;
-                          }
-                        });
-                      },
-                      icon: const Icon(Icons.arrow_left),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    SizedBox(
-                      width: 100,
-                      child: Center(
-                          child: Text(
-                        colorlist[color],
-                        style: const TextStyle(fontSize: 20),
-                      )),
-                    ),
-                    const SizedBox(
-                      width: 30,
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (color == colorlist.length - 1) {
-                            color = 0;
-                          } else {
-                            color = color + 1;
-                          }
-                        });
-                      },
-                      icon: const Icon(Icons.arrow_right),
-                    ),
-                  ],
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 const Text(
                   "Clarity",
-                  style: TextStyle(fontSize: 24),
+                  style: TextStyle(fontSize: 24,
+                  color: Color.fromRGBO(0, 77, 3, 10),),
                 ),
                 // Clarity 선택
                 Row(
@@ -325,26 +161,19 @@ class _DiamondPredictState extends State<DiamondPredict> {
                   ],
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 70,
                 ),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                        primary: Color.fromRGBO(255, 128, 0, 10),
-                        minimumSize: Size(150, 40)),
+                      primary: const Color.fromRGBO(255, 128, 0, 10),
+                      minimumSize: const Size(150, 40),
+                      maximumSize: const Size(150, 40),
+                    ),
                     onPressed: () {
-                      if (carat.text.trim().isEmpty ||
-                          depth.text.trim().isEmpty ||
-                          table.text.trim().isEmpty ||
-                          x.text.trim().isEmpty ||
-                          y.text.trim().isEmpty ||
-                          z.text.trim().isEmpty) {
+                      if (carat.text.trim().isEmpty || y.text.trim().isEmpty) {
                         nullSnackBar(context);
                       } else if (carat.text.split('.').length - 1 > 1 ||
-                          depth.text.split('.').length - 1 > 1 ||
-                          table.text.split('.').length - 1 > 1 ||
-                          x.text.split('.').length - 1 > 1 ||
-                          y.text.split('.').length - 1 > 1 ||
-                          z.text.split('.').length - 1 > 1) {
+                          y.text.split('.').length - 1 > 1) {
                         pointSnackBar(context);
                       } else {
                         Navigator.push(
@@ -352,19 +181,25 @@ class _DiamondPredictState extends State<DiamondPredict> {
                             MaterialPageRoute(
                               builder: (context) => DiamondResult(
                                 carat: double.parse(carat.text),
-                                cut: cut.toDouble(),
-                                color: color.toDouble(),
                                 clarity: clarity.toDouble(),
-                                depth: double.parse(depth.text),
-                                table: double.parse(table.text),
-                                x: double.parse(x.text),
                                 y: double.parse(y.text),
-                                z: double.parse(z.text),
                               ),
                             ));
                       }
                     },
-                    child: const Text("예측하기")),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.search),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Text(
+                          "예측하기",
+                          style: TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    )),
                 const SizedBox(
                   height: 200,
                 )
