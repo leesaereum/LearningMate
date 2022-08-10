@@ -1,13 +1,14 @@
 import express from 'express';
 import { initializeApp } from "firebase/app";
 //import { getAnalytics } from "firebase/analytics";
-const firebaseapp = initializeApp(firebaseConfig);
 const app = express();
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
-
-
+//import { getAuth } from "firebase/auth";
+//import { initializeApp } from 'firebase-admin/app';
+//const auth = getAuth();
 //firebase
+
 const firebaseConfig = {
   apiKey: "AIzaSyCj4fG1yaJOHYXPUDsfNoGUxBlXitOGUKg",
   authDomain: "learningmate-fe6a1.firebaseapp.com",
@@ -17,7 +18,8 @@ const firebaseConfig = {
   messagingSenderId: "215167370497",
   appId: "1:215167370497:web:cc950598d5e48866940700",
   measurementId: "G-13CYRYX878"
-  };
+};
+const firebaseapp = initializeApp(firebaseConfig);
 
 // Initialize Firebase
 //const analytics = getAnalytics(app);
@@ -44,12 +46,6 @@ app.use(express.static("static"));
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-// //all > 주석제거하면 무조건 다 all로 감
-// app.all("*",(req, res, next) => {
-//   console.log('hi')
-//   res.status(200).render('index.html')
-//   // res.cookie("XSRF-TOKEN", req.csrfToken);
-// });
 
 //session login
 app.post("/sessionLogin", (req, res) => {
@@ -62,7 +58,7 @@ app.post("/sessionLogin", (req, res) => {
 
       (sessionCookie) => {
         const options = {maxAge: expiresin, httpOnly: true};
-        res.cookie("session", sessionCookie,options);
+        //res.cookie("session", sessionCookie,options);
         res.end(JSON.stringify({status:"success"}));
       },
       //error
@@ -91,6 +87,10 @@ app.get("/signup", function (req, res){
   res.render("signup.html");
 });
 
+//로그인 
+app.get("/login", function (req, res) {
+  res.render("login.html");
+});
 
 // 프로필 
 app.get("/profile", function (req, res){
