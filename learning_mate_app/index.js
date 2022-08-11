@@ -7,7 +7,7 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 
 
-//firebase
+//firebasefi
 const firebaseConfig = {
   apiKey: "AIzaSyCj4fG1yaJOHYXPUDsfNoGUxBlXitOGUKg",
   authDomain: "learningmate-fe6a1.firebaseapp.com",
