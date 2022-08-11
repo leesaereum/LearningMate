@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "publish": "node ./auth/index/auth_state_listener.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
